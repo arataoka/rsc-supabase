@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const fetchBlogs = async () => {
     await new Promise((resolve) => setTimeout(resolve, 4000))
-    const res = await fetchSupabase({cache:"no-store",     next: { revalidate: 30 }},"/rest/v1/blogs?select=*")
+    const res = await fetchSupabase({cache: 'force-cache',     next: { revalidate: 30 }},"/rest/v1/blogs?select=*")
     const blogs = await res.json()
     return blogs;
 }

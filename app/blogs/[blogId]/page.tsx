@@ -1,19 +1,19 @@
 import React from 'react';
 import { headers, cookies } from 'next/headers'
-import createBrowserSupabaseClient, {fetchSupabase} from "@/utils/supabase";
+import {fetchSupabase} from "@/utils/supabase";
 import Link from "next/link";
 import { ArrowUturnLeftIcon } from '@heroicons/react/24/solid'
 import { format } from 'date-fns'
 
-const fetchBlog = async (blogId) => {
-    const res = await fetchSupabase({cache:"no-store"},"/rest/v1/blogs?select=*");
+const fetchBlog = async (blogId:string) => {
+    const res = await fetchSupabase({cache: 'force-cache'},"/rest/v1/blogs?select=*");
     const blogs = await res.json();
     const blog = blogs.find(blog => blog.id === blogId);
     return blog
 }
 
 async function generateStaticParams() {
-    const res = await fetchSupabase({cache:"no-store"},"/rest/v1/blogs?select=id");
+    const res = await fetchSupabase({cache: 'force-cache',},"/rest/v1/blogs?select=id");
     const ids = await res.json();
     return ids;
 }

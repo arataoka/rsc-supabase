@@ -11,3 +11,5 @@ export const fetchSupabase = (option:object, url:string) => fetch(`${process.env
     }),
     ...option
 })
+
+export const supabaseClient = createBrowserSupabaseClient<Database>()

@@ -9,20 +9,18 @@ async function fetchNotes() {
         headers: new Headers({
             apikey: process.env.apikey as string,
         }),
-        cache: 'no-store',
+        cache: 'force-cache',
         next: { revalidate: 10 },
     })
     if (!res.ok) {
         throw new Error('Failed to fetch data in server')
     }
     const notes: Note[] = await res.json()
-    console.log(notes)
     return notes
 }
 
 export default async function NotesList() {
     const notes = await fetchNotes()
-    console.log(notes)
     return (
         <div>
             <p className="my-4 pb-3 text-xl font-medium underline underline-offset-4">

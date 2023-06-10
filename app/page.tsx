@@ -9,8 +9,8 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center p-24">
       <p>Hello, world</p>
-        {/* @ts-expect-error Server Component */}
         <Suspense fallback={<Spinner color="border-green-500" />}>
+            {/* @ts-expect-error Async Server Component */}
             <NotesList />
         </Suspense>
         <TimerCounter/>
